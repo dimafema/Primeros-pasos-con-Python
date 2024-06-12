@@ -7,6 +7,9 @@ from .models import Usuario
 from django.shortcuts import render
 
 
+def panel_crear(request):
+    return render(request, 'panel_crear.html')
+
 # Vista para crear un nueva zona
 def crear_zona(request):
     if request.method == 'POST':
@@ -48,33 +51,31 @@ def crear_usuario(request):
         form = UsuarioForm()
     return render(request, 'crear_user.html', {'form': form})
 
+# Vista para editar un usuario existente
+def editar_usuario(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_usuarios')
+    else:
+        form = UsuarioForm(instance=usuario)
+    return render(request, 'editar_usuario.html', {'form': form})
+
+# Vista para eliminar un usuario existente
+def eliminar_usuario(request, id):
+    usuario = get_object_or_404(User, id=id)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('listar_usuarios')
+    return render(request, 'eliminar_usuario.html', {'usuario': usuario})
 
 # Vista para listar todos los usuarios
 def listar_usuarios(request):
     usuarios = {'usuarios': Usuario.objects.all()}  # Retrieve all Usuario objects from the database
     return render(request, 'lis_user.html', usuarios)  # Render the 'lis_user.html' template with the usuarios data
 
-def panel_crear(request):
-    return render(request, 'panel_crear.html')
 
 
 
-# # # Vista para editar un usuario existente
-# # def editar_usuario(request, id):
-# #     usuario = get_object_or_404(User, id=id)
-# #     if request.method == 'POST':
-# #         form = UserForm(request.POST, instance=usuario)
-# #         if form.is_valid():
-# #             form.save()
-# #             return redirect('listar_usuarios')
-# #     else:
-# #         form = UserForm(instance=usuario)
-# #     return render(request, 'vacaciones/editar_usuario.html', {'form': form})
-
-# # Vista para eliminar un usuario existente
-# def eliminar_usuario(request, id):
-#     usuario = get_object_or_404(User, id=id)
-#     if request.method == 'POST':
-#         usuario.delete()
-#         return redirect('listar_usuarios')
-#     return render(request, 'vacaciones/eliminar_usuario.html', {'usuario': usuario})

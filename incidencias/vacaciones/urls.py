@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
     path('', views.listar_usuarios, name='lista_usuarios'), 
-    path('crear_usuario/', views.crear_usuario, name='crear_usuario'), 
+    path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
+    path('edit_usuario/', views.editar_usuario, name='edit_usuario'), 
     path('crear_zona/', views.crear_zona, name='crear_zona'), 
     path('crear_parque/', views.crear_parque, name='crear_parque'),
     path('crear_brigada/', views.crear_brigada, name='crear_brigada'),
