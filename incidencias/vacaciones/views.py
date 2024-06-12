@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect
 from .forms import UsuarioForm, ParqueForm, ZonaForm, BrigadaForm
 from .models import Usuario
-from django.shortcuts import render
 
 
 def panel_crear(request):
-    return render(request, 'panel_crear.html')
+    usuarios = {'usuarios': Usuario.objects.all()}
+    return render(request, 'panel_crear.html', usuarios)
 
 # Vista para crear un nueva zona
 def crear_zona(request):
@@ -53,28 +52,27 @@ def crear_usuario(request):
 
 # Vista para editar un usuario existente
 def editar_usuario(request, id):
+    # usuario = get_object_or_404(Usuario, numero_casco=numero_casco)
     usuario = get_object_or_404(Usuario, id=id)
     if request.method == 'POST':
         form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
-            return redirect('listar_usuarios')
+            return redirect('editar_usuario', id=id)
     else:
         form = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'form': form})
 
 # Vista para eliminar un usuario existente
-def eliminar_usuario(request, id):
-    usuario = get_object_or_404(User, id=id)
+def eliminar_usuario(request,id):
+    # usuario = get_object_or_404(Usuario, numero_casco=numero_casco)
+    usuario = get_object_or_404(Usuario, id=id)
     if request.method == 'POST':
         usuario.delete()
         return redirect('listar_usuarios')
-    return render(request, 'eliminar_usuario.html', {'usuario': usuario})
+    return render(request, 'eliminar_usuario.html', id=id)
 
-# Vista para listar todos los usuarios
-def listar_usuarios(request):
-    usuarios = {'usuarios': Usuario.objects.all()}  # Retrieve all Usuario objects from the database
-    return render(request, 'lis_user.html', usuarios)  # Render the 'lis_user.html' template with the usuarios data
+
 
 
 

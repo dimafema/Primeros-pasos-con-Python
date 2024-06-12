@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %} Panel de creación {% endblock title %}
+{% block title %} Panel central {% endblock title %}
      <div class="button-container">
         
 {% block content %}
@@ -10,13 +10,32 @@
                         <a href="{% url 'crear_zona' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear zona</a>
                 </div>
                 <div style="margin: 10px;">
-                <a href="{% url 'crear_parque' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear parque</a>
+                        <a href="{% url 'crear_parque' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear parque</a>
                 </div>
                 <div style="margin: 10px;">
-                <a href="{% url 'crear_brigada' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear brigada</a>
+                        <a href="{% url 'crear_brigada' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear brigada</a>
                 </div>
+        </div>
+        <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
                 <div style="margin: 10px;">
-                <a href="{% url 'crear_usuario' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear usuarios</a>
+                        <a href="{% url 'crear_usuario' %}" class="button" style="background-color: lightblue; color: white; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Crear usuarios</a>
                 </div>
+        </div>
+        <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+                <div class="text-center">
+                        <h1>Lista de usuarios</h1>
+                </div>
+        </div>
+        <div class="text<i class="fa fa-align-left" aria-hidden="true"></i>
+                <ul class="list-group">
+                    {% for usuario in usuarios %}
+                <li class="list-group-item" style="background-color: lightblue; color: white; margin: 5px 50px 10px;">
+                        <a href="{% url 'edit_usuario' usuario.id %}" style="color: white; text-decoration: none;">
+                               {{usuario.id}} {{ usuario.numero_casco }}: {{ usuario.nombre }} {{ usuario.apellido }}
+                        </a>
+                </li>
+                    {% endfor %}
+                </ul>   
+        </div>
 
 {% endblock content %}
