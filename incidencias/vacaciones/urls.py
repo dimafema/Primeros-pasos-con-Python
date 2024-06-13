@@ -27,5 +27,4 @@ urlpatterns = [
     path('crear_parque/', views.crear_parque, name='crear_parque'),
     path('crear_brigada/', views.crear_brigada, name='crear_brigada'),
     path('', views.panel_crear, name='inicio'),
-    
 ]

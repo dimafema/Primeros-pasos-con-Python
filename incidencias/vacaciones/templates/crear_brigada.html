@@ -4,23 +4,21 @@
 {% block title %} Listado de usuarios {% endblock title %}
      <div class="button-container">
         
-{% block content %}
+{% block content %} 
+<hr style="border: 1px solid black;">
     <div style="text-align: center;">
         <h1>Crear Brigada</h1>
     </div>
-    <form method="post" style="background-color: lightgrey; width: 500px; border: 1px solid black; margin: 0 auto; margin-bottom: 10px;">
+    <form method="post" style= "width: 500px; margin: 0 auto; margin-bottom: 10px;">
         {% csrf_token %}
         <div style="padding: 10px;">
             {{ form.as_p }}
         </div>
         <div style="text-align: right; padding: 10px;">
-            <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
-                <div style="margin: 10px;">
-                        <a href="{% url 'inicio' %}" class="button" style="background-color: grey ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">volver</a>
+            <div class="text-bg">
+                <div>
+                    <button <a type="submit" class="read_more" href="Javascript:void(0)">Guardar</a></button>
                 </div>
-            <div style="margin: 10px;">
-                <a type="submit" style="background-color: grey ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Guardar</a>
             </div>
-        </div>
     </form>
 {% endblock %}
