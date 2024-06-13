@@ -7,9 +7,24 @@
     <div style="text-align: center;">    
         <h1>Editar Usuario</h1>
     </div>
-    <form method="post" style="background-color: #f2f2f2; width: 500px; border: 1px solid; margin-left: 10px; margin-bottom: 10px;">
+    <form method="post" style="background-color: lightyellow; width: 500px; border: 1px solid black; margin: 0 auto; margin-bottom: 10px;">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" style="border: 1px solid; margin-left: 10px; margin-bottom: 10px;">Guardar cambios</button>
+        <div style="padding: 10px;">
+            {{ form.as_p }}
+        </div>
+        <div style="text-align: right; padding: 10px;">
+            <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+                <div style="margin: 10px;">
+                        <a href="{% url 'inicio' %}" class="button" style="background-color: grey ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">volver</a>
+                </div>
+            <div style="margin: 10px;">
+                <a type="submit" style="background-color: grey ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Guardar</a>
+            </div>
+        </div>
     </form>
+    <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+        <div style="margin: 10px;">
+                <a href="{% url 'eliminar_usuario' %}" class="button" style="background-color: lightcoral; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Listar usuario a eliminar</a>
+        </div>
+    </div>  
 {% endblock %}

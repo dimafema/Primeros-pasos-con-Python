@@ -15,7 +15,7 @@ def crear_zona(request):
         form = ZonaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('in_datos')
+            return redirect('/')
     else:
         form = ZonaForm()
     return render(request, 'crear_zona.html', {'form': form})
@@ -25,7 +25,7 @@ def crear_parque(request):
         form = ParqueForm(request.POST)
         if form .is_valid():
             form .save()
-            return redirect('in_datos') 
+            return redirect('/') 
     else:
         form  = ParqueForm()
     return render(request, 'crear_parque.html', {'form': form })
@@ -35,7 +35,7 @@ def crear_brigada(request):
         form = BrigadaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('in_datos')
+            return redirect('/')
     else:
         form = BrigadaForm()
     return render(request, 'crear_brigada.html', {'form': form})
@@ -58,19 +58,26 @@ def editar_usuario(request, id):
         form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
-            return redirect('editar_usuario', id=id)
+            return redirect('/', id=id)
     else:
         form = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'form': form})
 
+def list_delete_user(request):
+    usuarios = {'usuarios': Usuario.objects.all()}
+    return render(request, 'lis_user_delete.html', usuarios)
+
 # Vista para eliminar un usuario existente
 def eliminar_usuario(request,id):
-    # usuario = get_object_or_404(Usuario, numero_casco=numero_casco)
     usuario = get_object_or_404(Usuario, id=id)
     if request.method == 'POST':
-        usuario.delete()
-        return redirect('listar_usuarios')
-    return render(request, 'eliminar_usuario.html', id=id)
+        form = UsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            usuario.delete()
+            return redirect('/list_delete',)
+    else:
+        form = UsuarioForm(instance=usuario)
+    return render(request, 'delete_usuario.html', {'form': form})
 
 
 

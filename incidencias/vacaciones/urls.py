@@ -20,10 +20,12 @@ from . import views
 
 urlpatterns = [
     path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
-    path('edit_usuario/<int:id>/', views.editar_usuario, name='edit_usuario'), 
+    path('edit_usuario/<int:id>/', views.editar_usuario, name='edit_usuario'),
+    path('list_delete/', views.list_delete_user, name='eliminar_usuario'),
+    path('eliminar_usuario/<int:id>/', views.eliminar_usuario, name='eliminar_usuario'),
     path('crear_zona/', views.crear_zona, name='crear_zona'), 
     path('crear_parque/', views.crear_parque, name='crear_parque'),
     path('crear_brigada/', views.crear_brigada, name='crear_brigada'),
-    path('', views.panel_crear, name='panel_crear'),
+    path('', views.panel_crear, name='inicio'),
     
 ]

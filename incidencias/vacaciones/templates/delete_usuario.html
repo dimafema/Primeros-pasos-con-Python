@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar usuario seleccionado{% endblock title %}
+     <div class="button-container">
+
+{% block content %}
+    <div style="text-align: center;">    
+        <h1>Eliminar Usuario</h1>
+    </div>
+    <form method="post" style="background-color: lightcoral; width: 500px; border: 1px solid black; margin: 0 auto; margin-bottom: 10px;">
+        {% csrf_token %}
+        <div style="padding: 10px;">
+            {{ form.as_p }}
+        </div>
+        <div style="text-align: right; padding: 10px;">
+            <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+                <div style="margin: 10px;">
+                        <a href="{% url 'inicio' %}" class="button" style="background-color: green ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">volver</a>
+                </div>
+            <div style="margin: 10px;">
+                <a type="submit" style="background-color: red ; color: black; border-radius: 5px; padding: 10px 20px; border: 1px solid black;">Eliminar</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
