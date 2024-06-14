@@ -19,12 +19,16 @@ from . import views
 
 
 urlpatterns = [
-    path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
-    path('edit_usuario/<int:id>/', views.editar_usuario, name='edit_usuario'),
-    path('list_delete/', views.list_delete_user, name='eliminar_usuario'),
-    path('eliminar_usuario/<int:id>/', views.eliminar_usuario, name='eliminar_usuario'),
+    path('', views.panel_crear, name='inicio'),
     path('crear_zona/', views.crear_zona, name='crear_zona'), 
     path('crear_parque/', views.crear_parque, name='crear_parque'),
     path('crear_brigada/', views.crear_brigada, name='crear_brigada'),
-    path('', views.panel_crear, name='inicio'),
+    path('crear_usuario/', views.crear_usuario, name='crear_usuario'),
+    path('edit_usuario/<int:id>/', views.editar_usuario, name='editar_usuario'),
+    path('list_delete/', views.list_delete_user, name='list_delete'),
+    path('list_edit/', views.list_edit_user, name='list_edit'),
+    path('eliminar_usuario/<int:id>/', views.eliminar_usuario, name='eliminar_usuario'),
+    path('list_vacaciones/', views.list_vacaciones_user, name='list_vacaciones'),
+    path('vacaciones_usuario/<int:id>/', views.crear_permisos, name='vacaciones_usuario'),
+    
 ]

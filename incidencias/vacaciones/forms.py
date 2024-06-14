@@ -1,5 +1,6 @@
 from django import forms
-from .models import Usuario, Parque, Zona, Brigada
+from .models import Usuario, Parque, Zona, Brigada, Vacaciones
+
 
 
 
@@ -22,5 +23,11 @@ class BrigadaForm(forms.ModelForm):
     class Meta:
         model = Brigada
         fields = '__all__'
+        
+class VacacionesForm(forms.ModelForm):
+    class Meta:
+        model = Vacaciones
+        fields = '__all__'
+        exclude = ['usuario']
         
         

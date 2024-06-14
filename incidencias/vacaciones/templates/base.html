@@ -67,8 +67,16 @@
                             <li class="nav-item">
                                <a class="nav-link" href="{% url 'crear_brigada' %}">brigadas</a>
                             </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="{% url 'crear_usuario' %}">usuarios</a>
+                           <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 usuarios
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                 <a class="dropdown-item" href="{% url 'crear_usuario' %}">crea</a>
+                                 <a class="dropdown-item" href="{% url 'list_edit' %}">editar</a>
+                                 <a class="dropdown-item" href="{% url 'list_delete' %}">eliminar</a>
+                              </div>
+                           </li>
                             </li>
                             <li class="nav-item">
                                <a class="nav-link" href="{% url 'inicio' %}">proyecto</a>
@@ -107,7 +115,7 @@
                             <div class="text-bg">
                                <h1> Gestión <br>vacaciones</h1>
                                <span>Introducir, editar, consultar o eliminar<br> descanso anual</span>
-                               <a class="read_more" href="Javascript:void(0)">ir</a>
+                               <a class="read_more" href="{% url 'list_vacaciones' %}">ir</a>
                             </div>
                          </div>
                       </div>
@@ -187,7 +195,6 @@
           <span class="sr-only">anterior</span>
           </a>
        </div>
-       
     </section>
     <!-- end banner -->
 

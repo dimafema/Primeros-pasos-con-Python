@@ -5,22 +5,30 @@
      <div class="button-container">
         
 {% block content %}
-        
-        <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
-                <div class="text-center">
-                        <h1>Lista de usuarios</h1>
-                </div>
-        </div>
-        <div class="text<i class="fa fa-align-left" aria-hidden="true"></i>
-                <ul class="list-group">
-                    {% for usuario in usuarios %}
-                <li class="list-group-item" style="background-color: lightblue; color: black; margin: 5px 50px 10px;">
-                        <a href="{% url 'edit_usuario' usuario.id %}" style="color: black; text-decoration: none;">
-                               {{usuario.id}} {{ usuario.numero_casco }}: {{ usuario.nombre }} {{ usuario.apellido }}
-                        </a>
-                </li>
-                    {% endfor %}
-                </ul>   
-        </div>
+     <div class="container">
+          <div class="row">
+               <div class="col-md-12">
+                    <p>En este panel podrás ver las incidencias que tienes pendientes de resolver o consultar.</p>
+                    <p>Si deseas crear una nueva incidencia, haz click en el botón de abajo para desplazarte por el menú y después pulsa ir</p>
+               </div>
+          </div>
+     </div>
 
+     <div class="button-container" style="text-align: center; margin-top: 10px; display: flex; justify-content: center; align-items: center; height: 10vh;">
+          <div class="text-center">
+                  <h1>Efectivos de tu brigada</h1>
+          </div>
+      </div>
+      <div class="text<i class="fa fa-align-left" aria-hidden="true"></i>
+          <ul class="list-group">
+              {% for usuario in usuarios %}
+          <li class="list-group-item" style="background-color: lightcoral; color: black; margin: 5px 50px 10px;">
+               <a style="color: black; text-decoration: none;">
+                    {{ usuario.numero_casco }}: {{ usuario.nombre }} {{ usuario.apellido }}
+               </a>
+                  </a>
+          </li>
+              {% endfor %}
+          </ul>   
+      </div>
 {% endblock content %}
