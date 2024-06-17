@@ -1,9 +1,6 @@
 from django import forms
 from .models import Usuario, Parque, Zona, Brigada, Vacaciones
 
-
-
-
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
@@ -28,6 +25,3 @@ class VacacionesForm(forms.ModelForm):
     class Meta:
         model = Vacaciones
         fields = '__all__'
-        exclude = ['usuario']
-        
-        

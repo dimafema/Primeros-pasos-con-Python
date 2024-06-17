@@ -13,6 +13,23 @@
     {% csrf_token %}
     <div style="padding: 10px;">
         {{ form.as_p }}
+        <script>
+            function calcularDias() {
+                var fechaInicio = document.getElementById('id_fecha_inicio').value;
+                var fechaFin = document.getElementById('id_fecha_fin').value;
+                var diasTotales = document.getElementById('id_dias_totales');
+                
+                // Calcular la diferencia en días entre las fechas
+                var diff = Math.floor((Date.parse(fechaFin) - Date.parse(fechaInicio)) / 86400000);
+                
+                // Asignar el valor calculado al campo dias_totales
+                diasTotales.value = diff;
+            }
+            // Llamar a la función calcularDias cuando se cambie el valor de las fechas
+            document.getElementById('id_fecha_inicio').addEventListener('change', calcularDias);
+            document.getElementById('id_fecha_fin').addEventListener('change', calcularDias);
+        </script>
+    </div>
     </div>
     <div style="text-align: right; padding: 10px;">
         <div class="text-bg">
