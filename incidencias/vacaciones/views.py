@@ -16,7 +16,7 @@ def crear_zona(request):
             return redirect('/')
     else:
         form = ZonaForm()
-    return render(request, 'crear_zona.html', {'form': form})
+    return render(request, 'zona/crear_zona.html', {'form': form})
 # Vista para editar una zona existente
 def editar_zona(request, id):
     zona = get_object_or_404(Zona, id=id)
@@ -27,7 +27,7 @@ def editar_zona(request, id):
             return redirect('/', id=id)
     else:
         form = ZonaForm(instance=zona)
-    return render(request, 'editar_zona.html', {'form': form})
+    return render(request, 'zona/editar_zona.html', {'form': form})
 # Vista para eliminar la zona seleccionada
 def eliminar_zona(request,id):
     zona = get_object_or_404(Zona, id=id)
@@ -46,11 +46,11 @@ def eliminar_zona(request,id):
 # Vista que muestra una lista de zonas para editar
 def list_edit_zona(request):
     zona = {'zona': Zona.objects.all()}
-    return render(request, 'lis_zona_edit.html', zona)
+    return render(request, 'zona/lis_zona_edit.html', zona)
 # Vista que muestra una lista de zonas para eliminar
 def list_delete_zona(request):
     zona = {'zona': Zona.objects.all()}
-    return render(request, 'lis_zona_delete.html', zona)
+    return render(request, 'zona/lis_zona_delete.html', zona)
 
 
 
@@ -63,7 +63,7 @@ def crear_parque(request):
             return redirect('/') 
     else:
         form  = ParqueForm()
-    return render(request, 'crear_parque.html', {'form': form })
+    return render(request, 'parque/crear_parque.html', {'form': form })
 # Vista para editar un parque existente
 def editar_parque(request, id):
     parque = get_object_or_404(Parque, id=id)
@@ -74,7 +74,7 @@ def editar_parque(request, id):
             return redirect('/', id=id)
     else:
         form = ParqueForm(instance=parque)
-    return render(request, 'editar_parque.html', {'form': form})
+    return render(request, 'parque/editar_parque.html', {'form': form})
 # Vista para eliminar el parque seleccionado
 def eliminar_parque(request,id):
     parque = get_object_or_404(Parque, id=id)
@@ -89,15 +89,15 @@ def eliminar_parque(request,id):
         form = ParqueForm(instance=parque)
         for field in form.fields.values():
             field.disabled = True
-    return render(request, 'delete_parque.html', {'form': form})
+    return render(request, 'parque/delete_parque.html', {'form': form})
 # Vista que muestra una lista de parque a editar
 def list_edit_parque(request):
     parque = {'parque': Parque.objects.all()}
-    return render(request, 'lis_parque_edit.html', parque)
+    return render(request, 'parque/lis_parque_edit.html', parque)
 # Vista que muestra una lista de parque a eliminar
 def list_delete_parque(request):
     parque = {'parque': Parque.objects.all()}
-    return render(request, 'lis_parque_delete.html', parque)
+    return render(request, 'parque/lis_parque_delete.html', parque)
 
 
 
@@ -111,7 +111,7 @@ def crear_brigada(request):
             return redirect('/')
     else:
         form = BrigadaForm()
-    return render(request, 'crear_brigada.html', {'form': form})
+    return render(request, 'brigada/crear_brigada.html', {'form': form})
 # Vista para editar un brigada existente
 def editar_brigada(request, id):
     brigada = get_object_or_404(Brigada, id=id)
@@ -122,7 +122,7 @@ def editar_brigada(request, id):
             return redirect('/', id=id)
     else:
         form = BrigadaForm(instance=brigada)
-    return render(request, 'editar_brigada.html', {'form': form})
+    return render(request, 'brigada/editar_brigada.html', {'form': form})
 # Vista para eliminar el brigada seleccionado
 def eliminar_brigada(request,id):
     brigada = get_object_or_404(Brigada, id=id)
@@ -137,15 +137,15 @@ def eliminar_brigada(request,id):
         form = BrigadaForm(instance=brigada)
         for field in form.fields.values():
             field.disabled = True
-    return render(request, 'delete_brigada.html', {'form': form})
+    return render(request, 'brigada/delete_brigada.html', {'form': form})
 # Vista que muestra una lista de brigada a editar
 def list_edit_brigada(request):
     brigada = {'brigada': Brigada.objects.all()}
-    return render(request, 'lis_brigada_edit.html', brigada)
+    return render(request, 'brigada/lis_brigada_edit.html', brigada)
 # Vista que muestra una lista de brigada a eliminar
 def list_delete_brigada(request):
     brigada = {'brigada': Brigada.objects.all()}
-    return render(request, 'lis_brigada_delete.html', brigada)
+    return render(request, 'brigada/lis_brigada_delete.html', brigada)
 
 # Vista para crear un nuevo usuario
 def crear_usuario(request):
@@ -156,7 +156,7 @@ def crear_usuario(request):
             return redirect('/')
     else:
         form = UsuarioForm()
-    return render(request, 'crear_user.html', {'form': form},)
+    return render(request, 'usuario/crear_user.html', {'form': form},)
 # Vista para editar un usuario existente
 def editar_usuario(request, id):
     usuario = get_object_or_404(Usuario, id=id)
@@ -167,7 +167,7 @@ def editar_usuario(request, id):
             return redirect('/', id=id)
     else:
         form = UsuarioForm(instance=usuario)
-    return render(request, 'editar_usuario.html', {'form': form})
+    return render(request, 'usuario/editar_usuario.html', {'form': form})
 # Vista para eliminar el usuario seleccionado
 def eliminar_usuario(request,id):
     usuario = get_object_or_404(Usuario, id=id)
@@ -182,15 +182,15 @@ def eliminar_usuario(request,id):
         form = UsuarioForm(instance=usuario)
         for field in form.fields.values():
             field.disabled = True
-    return render(request, 'delete_usuario.html', {'form': form})
+    return render(request, 'usuario/delete_usuario.html', {'form': form})
 # Vista que muestra una lista de usuarios para editar
 def list_edit_user(request):
     usuarios = {'usuarios': Usuario.objects.all()}
-    return render(request, 'lis_user_edit.html', usuarios)
+    return render(request, 'usuario/lis_user_edit.html', usuarios)
 # Vista que muestra una lista de usuarios para eliminar
 def list_delete_user(request):
     usuarios = {'usuarios': Usuario.objects.all()}
-    return render(request, 'lis_user_delete.html', usuarios)
+    return render(request, 'usuario/lis_user_delete.html', usuarios)
 
 
 # Vista para crear los permisos de descansos anuales (vacaiones)
@@ -202,11 +202,11 @@ def crear_vacaciones(request):
             return redirect('/')
     else:
         form = VacacionesForm()
-    return render(request, 'crear_vacaciones.html', {'form': form},)
+    return render(request, 'vacaciones/crear_vacaciones.html', {'form': form},)
 # Vista que muestra una lista de usuarios para crear permisos de vacaciones
 def list_vacaciones_user(request):
     usuarios = {'usuarios': Usuario.objects.all()}
-    return render(request, 'lis_user_vacaciones.html', usuarios)
+    return render(request, 'vacaciones/lis_user_vacaciones.html', usuarios)
 
 
 

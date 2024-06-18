@@ -47,6 +47,6 @@ urlpatterns = [
     
     
     path('list_vacaciones/', views.list_vacaciones_user, name='list_vacaciones'),
-    path('vacaciones_usuario/', views.crear_vacaciones, name='vacaciones_usuario'),
+    path('crear_vacaciones/', views.crear_vacaciones, name='crear_vacaciones'),
     
 ]
