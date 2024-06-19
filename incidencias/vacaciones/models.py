@@ -31,5 +31,5 @@ class Vacaciones(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    dias_totales = models.IntegerField()
-    estado = models.CharField(max_length=100)
+    dias_totales = models.IntegerField(blank=True, null=True)
+    disfrutada = models.BooleanField(default=False)

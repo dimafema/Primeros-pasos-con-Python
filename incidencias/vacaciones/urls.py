@@ -1,19 +1,4 @@
-"""
-URL configuration for incidencias project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.urls import path
 from . import views
 
@@ -48,5 +33,10 @@ urlpatterns = [
     
     path('list_vacaciones/', views.list_vacaciones_user, name='list_vacaciones'),
     path('crear_vacaciones/', views.crear_vacaciones, name='crear_vacaciones'),
+    path('edit_vacaciones/<int:id>/', views.editar_vacaciones, name='edit_vacaciones'),
+    path('list_delete_vacaciones/', views.list_delete_vacaciones, name='list_delete_vacaciones'),
+    path('list_edit_vacaciones/', views.list_edit_vacaciones, name='list_edit_vacaciones'),
+    path('delete_vacaciones/<int:id>/', views.eliminar_vacaciones, name='delete_vacaciones'),
+    
     
 ]

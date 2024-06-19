@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
 
-{% block title %}Editar usuario seleccionado{% endblock title %}
+{% block title %}Eliminar permiso{% endblock title %}
      <div class="button-container">
 
 {% block content %}
 <hr style="border: 1px solid black;">
     <div style="text-align: center;">    
-        <h1>Eliminar Usuario</h1>
+        <h2>Eliminar permiso</h2>
     </div>
     
     <form method="post" style= "width: 500px; margin: 0 auto; margin-bottom: 10px;">
         {% csrf_token %}
-        <div style="padding: 10px;">
-            {{ form.as_p }}
-        </div>
+            <div style="padding: 10px;">
+                {% for field in form %}
+                {% if field.name != 'usuario' %}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% endif %}
+                {% if field.name != 'usuario' %}
+                    <p>{{ field.value }}</p>
+                {% endif %}
+                {% endfor %}
+            </div>
         <div style="text-align: right; padding: 10px;">
             <div class="text-bg">
                 <div>

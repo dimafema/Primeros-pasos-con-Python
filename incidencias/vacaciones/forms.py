@@ -1,5 +1,6 @@
 from django import forms
 from .models import Usuario, Parque, Zona, Brigada, Vacaciones
+from datetime import datetime
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -24,4 +25,9 @@ class BrigadaForm(forms.ModelForm):
 class VacacionesForm(forms.ModelForm):
     class Meta:
         model = Vacaciones
-        fields = '__all__'
+        fields ='__all__'
+        widgets = {
+            'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date'}),
+            'dias_totales': forms.HiddenInput(),
+        }  

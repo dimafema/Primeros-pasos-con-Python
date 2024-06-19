@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from .forms import UsuarioForm, ParqueForm, ZonaForm, BrigadaForm, VacacionesForm
 from .models import Usuario, Parque, Zona, Brigada, Vacaciones
+from datetime import timedelta
 
 # página de incio
 def panel_crear(request):
@@ -37,12 +38,12 @@ def eliminar_zona(request,id):
             field.disabled = True
         if form.is_valid():
             zona.delete()
-            return redirect('/list_delete_zona',)
+            return redirect('list_delete_zona',)
     else:
         form = ZonaForm(instance=zona)
         for field in form.fields.values():
             field.disabled = True
-    return render(request, 'delete_zona.html', {'form': form})
+    return render(request, 'zona/delete_zona.html', {'form': form})
 # Vista que muestra una lista de zonas para editar
 def list_edit_zona(request):
     zona = {'zona': Zona.objects.all()}
@@ -51,7 +52,6 @@ def list_edit_zona(request):
 def list_delete_zona(request):
     zona = {'zona': Zona.objects.all()}
     return render(request, 'zona/lis_zona_delete.html', zona)
-
 
 
 # Vista para crear un nuevo parque
@@ -98,8 +98,6 @@ def list_edit_parque(request):
 def list_delete_parque(request):
     parque = {'parque': Parque.objects.all()}
     return render(request, 'parque/lis_parque_delete.html', parque)
-
-
 
 
 # Vista para crear un nueva brigada
@@ -198,17 +196,50 @@ def crear_vacaciones(request):
     if request.method == 'POST':
         form = VacacionesForm(request.POST)
         if form.is_valid():
-            form.save()
+            vacaciones = form.save(commit=False)
+            vacaciones.dias_totales = ((vacaciones.fecha_fin - vacaciones.fecha_inicio) + timedelta(days=1)).days
+            vacaciones.save()
             return redirect('/')
     else:
         form = VacacionesForm()
     return render(request, 'vacaciones/crear_vacaciones.html', {'form': form},)
+# Vista para editar los permisos de descansos anuales (vacaiones)
+def editar_vacaciones(request,id):
+    vacaciones = get_object_or_404(Vacaciones, id=id)
+    if request.method == 'POST':
+        form = VacacionesForm(request.POST, instance=vacaciones)
+        if form.is_valid():
+            vacaciones = form.save(commit=False)
+            vacaciones.dias_totales = ((vacaciones.fecha_fin - vacaciones.fecha_inicio) + timedelta(days=1)).days
+            vacaciones.save()
+            return redirect('/list_edit_vacaciones',)
+    else:
+        form =VacacionesForm(instance=vacaciones)
+    return render(request, 'vacaciones/editar_vacaciones.html', {'form': form})
+# Vista para eliminar los permisos de descansos anuales (vacaiones)
+def eliminar_vacaciones(request,id):
+    vacaciones = get_object_or_404(Vacaciones, id=id)
+    if request.method == 'POST':
+        form = VacacionesForm(request.POST, instance=vacaciones)
+        for field in form.fields.values():
+            field.disabled = True
+        if form.is_valid():
+            vacaciones.delete()
+            return redirect('/list_delete_vacaciones',)
+    else:
+        form =VacacionesForm(instance=vacaciones)
+        for field in form.fields.values():
+            field.disabled = True
+    return render(request, 'vacaciones/delete_vacaciones.html', {'form': form})
 # Vista que muestra una lista de usuarios para crear permisos de vacaciones
 def list_vacaciones_user(request):
-    usuarios = {'usuarios': Usuario.objects.all()}
-    return render(request, 'vacaciones/lis_user_vacaciones.html', usuarios)
-
-
-
-
-
+    vacaciones = { 'vacaciones': Vacaciones.objects.all()}
+    return render(request, 'vacaciones/lis_user_vacaciones.html', vacaciones)
+# Vista que muestra una lista de usuarios para editar permisos de vacaciones
+def list_edit_vacaciones(request):
+    vacaciones = {'vacaciones': Vacaciones.objects.all()}
+    return render(request, 'vacaciones/lis_vacaciones_edit.html', vacaciones)
+# Vista que muestra una lista de usuarios para eliminar permisos de vacaciones
+def list_delete_vacaciones(request):
+    vacaciones = {'vacaciones': Vacaciones.objects.all()}
+    return render(request, 'vacaciones/lis_vacaciones_delete.html', vacaciones)
