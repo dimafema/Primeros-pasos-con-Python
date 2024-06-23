@@ -4,7 +4,11 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.panel_crear, name='inicio'),
+    path('home/', views.panel_crear, name='home'),
+    path('condiciones_uso', views.cond_uso, name='condiciones_uso'),
+    path('', views.login_page, name='inicio'),
+    path('registro/', views.registro_user, name='register'),
+    
     
     path('crear_zona/', views.crear_zona, name='crear_zona'),
     path('edit_zona/<int:id>/', views.editar_zona, name='editar_zona'),

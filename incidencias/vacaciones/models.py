@@ -33,3 +33,16 @@ class Vacaciones(models.Model):
     fecha_fin = models.DateField()
     dias_totales = models.IntegerField(blank=True, null=True)
     disfrutada = models.BooleanField(default=False)
+    
+    def __str__(self):
+        if self.disfrutada == True:
+            estado = 'Disfrutada'
+        else:
+            estado = 'No Disfrutada'
+            
+        return self.usuario.nombre + '-' + str(self.usuario.numero_casco) + ', vacaciones desde ' + self.fecha_inicio.strftime('%d/%m/%y') + ' a ' + self.fecha_fin.strftime('%d/%m/%y') + ' días de permiso: ' + str(self.dias_totales) +' | '+ estado
+    
+    class Meta:
+        verbose_name = "Vacacione"
+        verbose_name_plural = "Vacaciones"
+        ordering = ['fecha_inicio'] , ['usuario']

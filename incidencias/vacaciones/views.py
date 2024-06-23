@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
-from .forms import UsuarioForm, ParqueForm, ZonaForm, BrigadaForm, VacacionesForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+from django.contrib import messages
+from .forms import UsuarioForm, ParqueForm, ZonaForm, BrigadaForm, VacacionesForm, RegisterForm
 from .models import Usuario, Parque, Zona, Brigada, Vacaciones
 from datetime import timedelta
 
@@ -8,6 +11,34 @@ from datetime import timedelta
 def panel_crear(request):
     usuarios = {'usuarios': Usuario.objects.all()}
     return render(request, 'panel_crear.html', usuarios)
+
+def cond_uso(request):
+    return render(request, 'condicionesuso.html')
+
+def login_page(request):
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos')
+    return render(request, 'login.html', {'form': form})
+
+def registro_user(request):
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'Usuario creado correctamente')
+            form.save()
+            return redirect('/')
+    return render(request, 'user/registro.html', {'form': form})
+
+
+
 # Vista para crear un nueva zona
 def crear_zona(request):
     if request.method == 'POST':

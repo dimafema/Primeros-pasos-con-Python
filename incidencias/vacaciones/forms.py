@@ -1,6 +1,10 @@
 from django import forms
 from .models import Usuario, Parque, Zona, Brigada, Vacaciones
-from datetime import datetime
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+
+
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -31,3 +35,30 @@ class VacacionesForm(forms.ModelForm):
             'fecha_fin': forms.DateInput(attrs={'type': 'date'}),
             'dias_totales': forms.HiddenInput(),
         }  
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2',
+        ]
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+       
+class LoginForm(AuthenticationForm):
+   class Meta:
+        model = User
+        fields = [
+            'username',
+            'password',
+        ]
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
